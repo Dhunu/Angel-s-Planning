@@ -16,7 +16,7 @@ public class Main {
 		
 		boolean flag = true;
 		while(flag) {
-			System.out.println("Select one option brom below: ");
+			System.out.println("Select one option from below: ");
 			System.out.println("1. Admin");
 			System.out.println("2. BDO");
 			System.out.println("3. Gram Panchyat Member: ");
