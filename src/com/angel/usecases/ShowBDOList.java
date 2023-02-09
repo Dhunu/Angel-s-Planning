@@ -15,6 +15,7 @@ public class ShowBDOList {
 		try {
 			List<BDO> bdos = adminDao.viewBDO();
 			
+			bdos.forEach(d -> System.out.println(d));
 			if(bdos.size()==0) {
 				System.out.println("No BDO in database");
 			}else {

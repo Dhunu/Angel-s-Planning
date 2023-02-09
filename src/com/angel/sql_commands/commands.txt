@@ -1,0 +1,33 @@
+create table BDO(
+blockId int primary key auto_increment,
+blockName varchar(20) unique,
+BDOName varchar(20)
+);
+
+create table Project(
+projectId int primary key auto_increment,
+projectName varchar(20),
+blockId int,
+constraint fk_blockId foreign key (blockId) references BDO(blockId)
+);
+
+create table Employee(
+employeeId int primary key auto_increment,
+employeeName varchar(20),
+projectId int,
+wage int,
+daysWorked int,
+GP_ID int,
+constraint fk_GPMpId foreign key (projectId) references GPM(projectId),
+constraint fk_GP_ID foreign key (GP_ID) references GPM(GP_ID)
+);
+
+create table GPM(
+GP_ID int primary key auto_increment,
+GP_Name varchar(20),
+GPM_Name varchar(20),
+blockId int,
+projectId int,
+constraint fk_projectId foreign key (projectId) references Project(projectId),
+constraint fk_bId foreign key (blockId) references BDO(blockId)
+);

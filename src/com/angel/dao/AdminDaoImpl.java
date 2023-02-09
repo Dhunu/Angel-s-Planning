@@ -22,7 +22,7 @@ public class AdminDaoImpl implements AdminDao{
 		try(Connection conn = DBUtils.provideConnection()) {
 			
 			PreparedStatement ps = conn.prepareStatement(
-					"insert into BDO(block_Name, BDO_Name) values(?,?)");
+					"insert into BDO(blockName, BDOName) values(?,?)");
 			
 			
 			ps.setString(1, bdo.getBlock_Name());
@@ -60,6 +60,8 @@ public class AdminDaoImpl implements AdminDao{
 				
 				bdos.add(bdo);
 			}
+			
+			return bdos;
 			
 		} catch (Exception e) {
 			// TODO: handle exception
