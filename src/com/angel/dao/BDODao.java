@@ -17,7 +17,7 @@ public interface BDODao {
 	
 	public String createPanchyatMember(PanchayatMember member) throws PanchyatMemberExceptions;
 	
-	public List<PanchayatMember> viewPanchyatMember() throws PanchyatMemberExceptions;
+	public List<PanchayatMember> viewPanchyatMember(int blockId) throws PanchyatMemberExceptions;
 	
 	public String allocateProject(int PanchyatMemberID, int ProjectID) throws PanchyatMemberExceptions,ProjectExceptions;
 	
