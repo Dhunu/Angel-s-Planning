@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.angel.exceptions.ProjectExceptions;
 import com.angel.model.BDO;
 import com.angel.model.PanchayatMember;
 import com.angel.usecases.AllocateProjectToGPM;
@@ -25,7 +26,7 @@ import com.angel.utility.DBUtils;
 public class Main {
 	
 	@SuppressWarnings("resource")
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ProjectExceptions {
 		
 		Connection conn = DBUtils.provideConnection();
 		
@@ -154,7 +155,7 @@ public class Main {
 								
 								switch (c) {
 								case 1: {
-									CreateProject.main(args);
+									CreateProject.main(args,bdo.getBlock_ID());
 									break;
 								}
 								case 2: {
@@ -162,11 +163,11 @@ public class Main {
 									break;
 								}
 								case 3: {
-									CreateGPM.main(args);
+									CreateGPM.main(args,bdo.getBlock_ID());
 									break;
 								}
 								case 4: {
-									ViewListOfGPM.main(args);
+									ViewListOfGPM.main(args,bdo.getBlock_ID());
 									break;
 								}
 								case 5: {
@@ -194,6 +195,8 @@ public class Main {
 							
 						}else {
 							System.out.println("Wrong BDO credentials");
+							System.out.println();
+							break;
 							
 						}
 						
