@@ -7,22 +7,37 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 import com.angel.model.BDO;
+import com.angel.model.PanchayatMember;
+import com.angel.usecases.AllocateProjectToGPM;
+import com.angel.usecases.AssignEmployeeToProject;
 import com.angel.usecases.CreateBDO;
+import com.angel.usecases.CreateEmployee;
+import com.angel.usecases.CreateGPM;
+import com.angel.usecases.CreateProject;
 import com.angel.usecases.ShowBDOList;
+import com.angel.usecases.ViewDetailsOfEmployee;
+import com.angel.usecases.ViewListOfEmployeeWorkingOnAPRojectWithWages;
+import com.angel.usecases.ViewListOfGPM;
+import com.angel.usecases.ViewListOfProjects;
+import com.angel.usecases.ViewTotalNumberOfDaysEmployeeWorkedInAProjectAlongWithWages;
 import com.angel.utility.DBUtils;
 
 public class Main {
 	
 	@SuppressWarnings("resource")
 	public static void main(String[] args) {
-		System.out.println("******************************");
-		System.out.println("----- Welcome to MGNREGA -----");
-		System.out.println("******************************");
 		
-		System.out.println();
+		Connection conn = DBUtils.provideConnection();
+		
 		
 		boolean flag = true;
 		while(flag) {
+			System.out.println("******************************");
+			System.out.println("----- Welcome to MGNREGA -----");
+			System.out.println("******************************");
+			
+			System.out.println();
+			
 			System.out.println("Select one option from below: ");
 			System.out.println("1. Admin");
 			System.out.println("2. BDO");
@@ -100,7 +115,7 @@ public class Main {
 				System.out.println("Enter BDO name: ");
 				String BDOName = sc.next();
 				
-				try(Connection conn = DBUtils.provideConnection()) {
+				try{
 					
 					PreparedStatement ps = conn.prepareStatement(
 							"select * from BDO where blockId = ?");
@@ -109,11 +124,8 @@ public class Main {
 					
 					ResultSet rs = ps.executeQuery();
 					
-					
-					if(rs.next()==true) {
-						
 						BDO bdo = new BDO();
-						while(rs.next()) {
+						if(rs.next()) {
 							bdo.setBlock_ID(id);
 							bdo.setBlock_Name(rs.getString("blockName"));
 							bdo.setBDO_Name(rs.getString("BDOName"));
@@ -142,31 +154,32 @@ public class Main {
 								
 								switch (c) {
 								case 1: {
-									
+									CreateProject.main(args);
 									break;
 								}
 								case 2: {
-									
+									ViewListOfProjects.main(args);
 									break;
 								}
 								case 3: {
-						
+									CreateGPM.main(args);
 									break;
 								}
 								case 4: {
-						
+									ViewListOfGPM.main(args);
 									break;
 								}
 								case 5: {
-						
+									AllocateProjectToGPM.main(args);
 									break;
 								}
 								case 6: {
-						
+									ViewListOfEmployeeWorkingOnAPRojectWithWages.main(args);
 									break;
 								}
 								case 7: {
-									
+									flag1 = false;
+									break;
 								}
 								default:
 									throw new IllegalArgumentException("Unexpected value: " + c);
@@ -184,12 +197,6 @@ public class Main {
 							
 						}
 						
-						
-						
-					}else {
-						System.out.println("BDO doesn't exist!");
-						System.out.println();
-					}
 					
 				} catch (SQLException e) {
 					// TODO: handle exception
@@ -199,7 +206,80 @@ public class Main {
 				
 			}
 			case 3: {
-		
+				System.out.println("******************************");
+				System.out.println("------------- GPM ------------");
+				System.out.println("******************************");
+				System.out.println();
+				
+				System.out.println("Enter GP ID: ");
+				int id = sc.nextInt();
+				System.out.println("Enter GP name: ");
+				String GPName = sc.next();
+				System.out.println("Enter GPM name: ");
+				String GPMName = sc.next();
+				
+				try{
+					
+					PreparedStatement ps = conn.prepareStatement("select * from GPM where GP_ID = ?");
+					ps.setInt(1, id);
+					
+					ResultSet rs = ps.executeQuery();
+					PanchayatMember gpm = new PanchayatMember();
+					if(rs.next()) {
+						gpm.setGP_ID(id);
+						gpm.setGP_Name(rs.getString("GP_Name"));
+						gpm.setGPM_Name(rs.getString("GPM_Name"));
+					}
+					
+					if(gpm.getGP_Name().equals(GPMName) && gpm.getGPM_Name().equals(GPMName)) {
+						System.out.println("******************************");
+						System.out.println("-------- Welcome GPM ---------");
+						boolean flag1 = true;
+						
+						while(flag1) {
+							System.out.println("******************************");
+							
+							System.out.println("Select an option: ");
+							System.out.println("1. Create Employee");
+							System.out.println("2. View Details of Employee");
+							System.out.println("3. Assign Employee to Project");
+							System.out.println("4. View total number of days employee worked in a project along with wages");
+							System.out.println("5. Logout");
+							
+							
+							int key = sc.nextInt();
+							
+							switch (key) {
+							case 1: {
+								CreateEmployee.main(args);
+								break;
+							}
+							case 2: {
+								ViewDetailsOfEmployee.main(args);
+								break;
+							}
+							case 3: {
+								AssignEmployeeToProject.main(args);
+								break;
+							}
+							case 4: {
+								ViewTotalNumberOfDaysEmployeeWorkedInAProjectAlongWithWages.main(args);
+								break;
+								
+							}
+							case 5: {
+								flag1 = false;
+								break;
+							}
+							default:
+								throw new IllegalArgumentException("Unexpected value: " + key);
+							}
+						}
+					}
+					
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
 				break;
 			}
 			case 4: {

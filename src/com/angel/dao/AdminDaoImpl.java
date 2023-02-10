@@ -54,9 +54,9 @@ public class AdminDaoImpl implements AdminDao{
 			
 			while(rs.next()) {
 				BDO bdo = new BDO();
-				bdo.setBlock_ID(rs.getInt("block_ID"));
-				bdo.setBlock_Name(rs.getString("block_Name"));
-				bdo.setBDO_Name(rs.getString("BDO_Name"));
+				bdo.setBlock_ID(rs.getInt("blockId"));
+				bdo.setBlock_Name(rs.getString("blockName"));
+				bdo.setBDO_Name(rs.getString("BDOName"));
 				
 				bdos.add(bdo);
 			}
@@ -71,7 +71,7 @@ public class AdminDaoImpl implements AdminDao{
 		
 		
 		
-		return bdos;
+		return null;
 	}
 
 }
