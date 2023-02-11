@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 
+import com.angel.exceptions.PanchyatMemberExceptions;
 import com.angel.exceptions.ProjectExceptions;
 import com.angel.model.BDO;
 import com.angel.model.PanchayatMember;
@@ -26,7 +27,7 @@ import com.angel.utility.DBUtils;
 public class Main {
 	
 	@SuppressWarnings("resource")
-	public static void main(String[] args) throws ProjectExceptions {
+	public static void main(String[] args) throws ProjectExceptions, PanchyatMemberExceptions {
 		
 		Connection conn = DBUtils.provideConnection();
 		
