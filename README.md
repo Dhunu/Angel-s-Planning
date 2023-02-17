@@ -9,10 +9,12 @@ Project for storage of Project details and
 Employee for storage of employee details who are working on various projects.
 </h3>
 
-# ER Diagram : 
 
-<img src="https://www.linkpicture.com/q/ER-diagram.png" type="image"></a>
 
 # Flow Chart :
 
 <img src="https://www.linkpicture.com/q/Angel-s-Vikash-1.jpg" type="image"></a>
+
+# ER Diagram : 
+
+<img src="https://www.linkpicture.com/q/ER-diagram.png" type="image"></a>
