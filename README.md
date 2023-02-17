@@ -11,8 +11,8 @@ Employee for storage of employee details who are working on various projects.
 
 # ER Diagram : 
 
-<a href="https://www.linkpicture.com/view.php?img=LPic63e5bfcb385d8978925169"><img src="https://www.linkpicture.com/q/ER-diagram.png" type="image"></a>
+<img src="https://www.linkpicture.com/q/ER-diagram.png" type="image"></a>
 
 # Flow Chart :
 
-<a href="https://www.linkpicture.com/view.php?img=LPic63e5c14972fb51637422464"><img src="https://www.linkpicture.com/q/Flow-Chart.png" type="image"></a>
+<img src="https://www.linkpicture.com/q/Angel-s-Vikash-1.jpg" type="image"></a>
